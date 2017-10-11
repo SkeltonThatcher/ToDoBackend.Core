@@ -9,6 +9,6 @@ stage('Build') {
 stage('Test') {
     node {
         sh 'dotnet test ToDoBackend.Core.Unit.Tests/ToDoBackend.Core.Unit.Tests.csproj --logger "trx;LogFileName=unittestresults.trx"'
-        mstest testResultsFile:"**/*.trx", keepLongStdio: true
+        step([$class: 'MSTestPublisher', testResultsFile:"**/*.trx", failOnError: true, keepLongStdio: true])
     }
 }
