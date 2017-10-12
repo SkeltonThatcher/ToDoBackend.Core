@@ -35,3 +35,10 @@ To retain the pipeline history, mount a volume pointing `/godata` local director
     docker run -d --name mygocd -p8153:8153 -p8154:8154 -v `pwd`/godata:/godata -v `pwd`/go_home:/home/go gocd/gocd-server:v17.10.0
 
 Once complete, the server can be accessed at http://localhost:8153
+
+#### Install the Json Configuration Plugin
+By default GoCD only supports pipelines defined in XML.  To enable Json support you'll need to install the [Json Configuration plugin](https://github.com/tomzo/gocd-json-config-plugin).  
+
+Plugins are installed by dropping [the jar](https://github.com/tomzo/gocd-json-config-plugin/releases) into the `/godata/plugins/external` directory which should be mapped to a local directory as per the above commands.  Restart the docker container:
+
+    docker restart mygocd
