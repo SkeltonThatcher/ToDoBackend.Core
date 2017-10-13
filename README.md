@@ -42,3 +42,12 @@ By default GoCD only supports pipelines defined in XML.  To enable Json support 
 Plugins are installed by dropping [the jar](https://github.com/tomzo/gocd-json-config-plugin/releases) into the `/godata/plugins/external` directory which should be mapped to a local directory as per the above commands.  Restart the docker container:
 
     docker restart mygocd
+
+#### Start a GoCD Agent
+Unlike Jenkins, the GoCD server does not have the ability to process tasks internally and requires an agent.  This is available another [docker image](https://hub.docker.com/r/gocd/gocd-agent-ubuntu-16.04/).
+
+To register the agent with the server we need the server's `agentAutoRegisterKey` which is found in the `config.xml`.
+
+This command will grab the ip address of the gocd server if named `mygocd`, set the agent auto register key and run the container:
+
+    docker run -itd -e GO_SERVER_URL=https://$(docker inspect --format='{{(index (index .NetworkSettings.IPAddress))}}' mygocd):8154/go -e AGENT_AUTO_REGISTER_KEY=d87eef50-43e5-4846-b693-cdbe0b50a05c gocd/gocd-agent-ubuntu-16.04:v17.10.0
