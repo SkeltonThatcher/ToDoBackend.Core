@@ -18,7 +18,7 @@ To ensure that you don't lose any settings or customisations, mount a volume tie
 
 Once complete, the server can be accessed at http://localhost:8080
 
-To install .net core we need to run bash on the container as root and follow the [official instructions](https://www.microsoft.com/net/core#linuxdebian)
+To install .net core we need to run bash on the container as root and follow the [official instructions](https://www.microsoft.com/net/learn/get-started/linux/debian9)
 
     docker exec -ti -u 0 _myjenkins_ bash
 
