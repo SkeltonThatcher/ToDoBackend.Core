@@ -1,3 +1,5 @@
+ci-tooling/jenkins_home/*
+
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
